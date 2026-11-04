@@ -1,0 +1,33 @@
+{
+  "cases": 39,
+  "pixelDifferences": [
+    {
+      "image": "1280-compare.html.png",
+      "bounds": [
+        51,
+        611,
+        54,
+        684
+      ],
+      "pixels": 19
+    },
+    {
+      "image": "1280-features_index.html.png",
+      "bounds": [
+        51,
+        611,
+        54,
+        684
+      ],
+      "pixels": 19
+    }
+  ],
+  "beforeCommit": "cf0ac6a276563bf13cafc4727a050cff905790eb",
+  "browser": "Chromium headless",
+  "motion": "reduce",
+  "widths": [
+    1280,
+    390,
+    320
+  ]
+}

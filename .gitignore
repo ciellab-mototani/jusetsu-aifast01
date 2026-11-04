@@ -1,1 +1,9 @@
 compare48/.DS_Store
+.DS_Store
+*.sqlite
+*.sqlite-*
+.env
+.env.*
+contact-config.php
+__pycache__/
+server/contact-config.php

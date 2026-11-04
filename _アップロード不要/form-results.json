@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-04",
+  "php_tests": 40,
+  "browser_widths": [
+    1280,
+    390,
+    320
+  ],
+  "scenarios": [
+    "Turnstile rejected, wrong hostname/action, expiry, service outage",
+    "Missing credentials/test keys fail closed",
+    "SMTP failed/uncertain/sent handling",
+    "PHP input, CSRF, rate limit, idempotency",
+    "Real PHPMailer MIME/TLS configuration",
+    "Browser script-load failure and retry, token expiry, input retention, success, reopen, no overflow"
+  ],
+  "smtp_tls_probe": {
+    "host": "sv16592.xserver.jp",
+    "port": 465,
+    "certificate_verified": true,
+    "authenticated": false,
+    "mail_sent": false
+  },
+  "external_authentication": "not tested; credentials pending"
+}

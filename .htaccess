@@ -1,0 +1,42 @@
+Options -Indexes
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# Leave certificate renewal challenges available.
+RewriteRule ^\.well-known/acme-challenge/ - [L]
+# Do not expose repository metadata, review material or source configuration.
+RewriteRule (^|/)\. - [F,L]
+RewriteRule ^(?:_maintenance|_アップロード不要|server)(?:/|$) - [F,L]
+RewriteRule \.(?:md|sqlite|db|log|env|bak)$ - [F,L,NC]
+# Old paths from the supplied site. Query strings and fragments are preserved.
+RewriteRule ^features/?$ features.html [R=301,L]
+RewriteRule ^features/index\.html$ features.html [R=301,L]
+RewriteRule ^features/f0([1-7])\.html$ feature-0$1.html [R=301,L]
+# Enforce HTTPS on the test host without affecting other directories.
+RewriteCond %{HTTP_HOST} ^jgtest\.xsrv\.jp$ [NC]
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://jgtest.xsrv.jp%{REQUEST_URI} [R=302,L]
+# Canonicalize production hosts.
+RewriteCond %{HTTP_HOST} ^www\.ai-fast\.jp$ [NC]
+RewriteRule ^ https://ai-fast.jp%{REQUEST_URI} [R=301,L]
+RewriteCond %{HTTP_HOST} ^ai-fast\.jp$ [NC]
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://ai-fast.jp%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "DENY"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://www.googletagmanager.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; frame-src https://www.googletagmanager.com https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+<FilesMatch "\.(?:html|js|css)$">
+Header set Cache-Control "no-cache"
+</FilesMatch>
+</IfModule>
+
+<FilesMatch "^(?:\.ht|.*\.(?:md|sqlite|db|log|env|bak)$)">
+Require all denied
+</FilesMatch>
