@@ -1,0 +1,147 @@
+/* r40: 関さん 2026-10-27 の指摘（動き・全面パネル・明るい背景・FVの迫力・見づらさ）への対応。設計と出典は docs/制作工場/重説AIファストLP/r40設計.md */
+
+/* ── 1. FV：パネルを画面全体に（設計1）・明るく（設計3）・ロゴを大きく、Fast を出す（設計4） ── */
+#fv .hero{padding:0 0 30px;background:#e9e3d2}
+#fv .hero>.story,#fv .hero>.benefits{margin-inline:max(4%,calc((100% - 1260px)/2))}
+#fv .hero>.story{margin-top:30px}
+#fv .panel-stage{background:#7fb6d8}
+#fv .panel-original{background:url(fv-assets/castle.webp) 25% center/cover;min-height:calc(100svh - 79px);padding:clamp(14px,2.4vw,28px) max(4%,calc((100% - 1180px)/2)) 22px;display:flex;flex-direction:column;justify-content:center;gap:clamp(8px,1.6vw,18px)}
+#fv .panel-original>.logo,#fv .tile-face .panel-original>.logo{width:min(900px,74%);max-width:none;margin:0 auto}
+#fv .fv-brand{position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(6px,1.5vw,20px)}
+#fv .fv-brand .logo{width:min(900px,74%);max-width:none;margin:0;filter:drop-shadow(0 6px 0 #0b1c2d55)}
+#fv .fv-fast{width:clamp(78px,11vw,170px);height:auto;flex:none;filter:drop-shadow(0 8px 6px #0b1c2d55)}
+#fv .panel-original .dialogue{background:#142b40e0;max-width:960px;width:100%;margin:0 auto;padding:clamp(12px,1.6vw,20px) clamp(16px,2.2vw,28px);gap:clamp(10px,2vw,26px);align-items:center}
+#fv .panel-original .dialogue h1{font-size:clamp(26px,2.5vw,34px)}
+#fv .panel-original .dialogue .lead{font-size:clamp(16px,1.4vw,19px);margin-top:8px}
+#fv .panel-original .dialogue .stat{margin:0}
+#fv .panel-original .dialogue .stat-label{font-size:17px}
+#fv .panel-original .dialogue .number{font-size:clamp(64px,6.6vw,92px)}
+#fv .panel-original .dialogue .cta{padding:11px 20px;font-size:19px}
+/* 窓は本番の FV と同じ羊皮紙の色に（明るさ 0.19 では「明るく」に届かなかったため）。金の縁と◆はドラクエ風のまま */
+#fv .panel-original .dialogue{background:#fff8e6f0;color:#142b40;border:3px solid #b8892f;box-shadow:6px 6px 0 #0b1c2d88}
+#fv .panel-original .dialogue:before,#fv .panel-original .dialogue:after{color:#b8892f}
+#fv .panel-original .dialogue h1{color:#142b40}
+#fv .panel-original .dialogue h1 strong{color:#8a3d0c}
+#fv .panel-original .dialogue :is(.lead,.stat-label,.note){color:#142b40}
+#fv .panel-original .dialogue .note{color:#3d4f58}
+#fv .panel-original .dialogue .number{color:#142b40;text-shadow:3px 3px 0 #ffd24a}
+#fv .panel-original .dialogue .number span{text-shadow:none}
+#fv .panel-original .dialogue .cta{background-color:#142b40;color:#ffe080;border-color:#142b40}
+#fv .panel-original .dialogue .cta.secondary{background-color:#fffaf0;color:#142b40;border-color:#142b40}
+#fv .panel-original .dialogue .actions{margin-top:12px}
+#fv .panel-original .dialogue .note{font-size:15px;margin-top:6px}
+/* 裏面も明るく（設計9・10）。意味のある裏面（要件23）はそのまま */
+#fv .panel-back-art{background:linear-gradient(#fff8e6e8,#f4ebd7f0),url(fv-assets/castle.webp) center/cover;color:#142b40}
+#fv .panel-back-art h2{color:#142b40}
+#fv .panel-back-art .back-route li{background:#fffaf0;color:#142b40;border-color:#987130}
+#fv .panel-back-art .back-route b{color:#142b40}
+#fv .panel-back-art .back-route span{color:#4b5c5e}
+#fv .panel-back-art .back-next{color:#79541b;font-weight:800}
+#fv .panel-back-art .fast-service-name{background:#142b40;color:#fff8e6}
+#fv .tile-face{background:#7fb6d8}
+/* 黒い操作の帯 → 隅の小さな札（設計5） */
+#fv .hero{position:relative}
+#fv .panel-controls{position:absolute;top:10px;right:max(12px,calc((100% - 1260px)/2));z-index:6;background:#142b40cc;color:#fff8e6;border:1px solid #d8ba70;padding:4px 6px 4px 12px;gap:10px;align-items:center;font-size:13px}
+#fv .panel-controls>span{background:transparent}
+#fv .panel-controls button{padding:4px 12px;font-size:13px}
+@media(max-width:760px){
+  /* スマホの上の帯：3段 → 2段（案内の文字を少し小さく、2つのボタンを横並び） */
+  #fv .sitehead nav{gap:0 10px}
+  #fv .sitehead nav a{font-size:14px;min-height:40px}
+  #fv .sitehead .nav-cta{flex:1 1 40%;padding:6px;font-size:16px;min-height:44px}
+  #fv .panel-original{min-height:calc(100svh - 130px);padding:44px 10px 14px;gap:8px}
+  #fv .fv-brand{display:block}
+  #fv .fv-brand .logo,#fv .panel-original>.logo{width:100%;display:block}
+  #fv .fv-fast{position:absolute;left:-2px;bottom:-14px;width:64px;z-index:1}
+  #fv .panel-controls{top:8px;right:10px}
+  #fv .panel-original .dialogue{padding:14px;background:#fff8e6eb}
+  #fv .panel-original .dialogue h1{font-size:25px}
+  #fv .panel-original .dialogue .lead{font-size:16px}
+  #fv .panel-original .dialogue .number{font-size:68px}
+  #fv .panel-original .dialogue .cta{padding:10px 12px;font-size:18px}
+  #fv .panel-controls>span{display:none}
+  #fv .hero>.story,#fv .hero>.benefits{margin-inline:16px}
+}
+
+/* ── 設計13：見出し・ボタンは「、。・」などの区切りでだけ折り返す（最後の1〜2文字だけが落ちるのを防ぐ）。長すぎる塊は端で折る ── */
+:is(h1,h2,h3,h4,.eyebrow,.cta,.nav-cta,.sales-button,.bridge p,.panel-quick button){word-break:keep-all;overflow-wrap:anywhere}
+.keep{white-space:nowrap}
+
+/* ── 2. 内部向けの注記を画面から外す（設計12） ── */
+#fv .fv-candidate-note,#fv .material-note,.integration-intro>p:first-child,.integration-intro>p:nth-of-type(2),.integration-intro>a,.integration-intro>details{display:none}
+
+/* ── 3. 暗い章を明るい章へ（設計9〜11）。r38 で機能06に入れた明るい章の型を、ほかの章にもそろえる ── */
+:is(#f02,#f03,#f04,#f05,#f07,#f08){background:#f4ebd7;color:#18343e}
+:is(#f03,#f05,#f08){background:#fbf6ea}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) .section-content{background:linear-gradient(110deg,#f4ebd7 15%,#f4ebd7e8 65%,#f4ebd7b8),url(fv-assets/castle.webp) right top/auto 480px no-repeat}
+:is(#f03,#f05,#f08) .section-content{background:linear-gradient(110deg,#fbf6ea 15%,#fbf6eae8 65%,#fbf6eab8),url(fv-assets/castle.webp) right top/auto 480px no-repeat}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) :is(.intro h1,h2,h3,dd,strong,dt){color:#18343e}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) :is(.intro em,.eyebrow,em,b,.evidence-caption,small){color:#79541b}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) :is(.sample,p.check-note,.small){color:#4b5c5e}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) .evidence-workspace{background:#fffaf0;color:#18343e;border-color:#987130;border-top-color:#987130}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) .evidence-workspace :is(p,span,li,dd,dt,strong,h2,h3){color:#18343e}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) .evidence-workspace :is(.evidence-caption,small,b){color:#79541b}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) .steps{border-top-color:#987130}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) .step{background:#e9dec5;color:#18343e;border-color:#a58c5a}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) .step span{color:#79541b}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) .step.selected{background:#18343e;color:#fff8e8;border-color:#18343e;box-shadow:-4px 0 #987130}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) .step.selected span{color:#ffe080}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) :is(.human,.bridge){color:#18343e;border-color:#987130}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) .human>b{color:#79541b}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) .cta{background:#18343e;color:#fff8e8;border-color:#18343e}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) .integration-route{background:#eadfc7}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) .integration-route a{color:#18343e}
+:is(#f02,#f03,#f04,#f05,#f07,#f08) :focus-visible{outline:3px solid #925215;outline-offset:4px}
+#f01 .integration-route{background:#eadfc7}
+#f01 .integration-route a{color:#18343e}
+@media(max-width:760px){
+  :is(#f02,#f03,#f04,#f05,#f07,#f08) .section-content{background:linear-gradient(#f4ebd7ed,#f4ebd7),url(fv-assets/castle.webp) right top/auto 320px no-repeat}
+  :is(#f03,#f05,#f08) .section-content{background:linear-gradient(#fbf6eaed,#fbf6ea),url(fv-assets/castle.webp) right top/auto 320px no-repeat}
+  :is(#f02,#f03,#f04,#f05,#f07,#f08) .evidence-workspace{padding:18px 16px}
+}
+/* 仕組みの章 */
+.workflow-overview{background:#fbf6ea;color:#18343e}
+.workflow-overview :is(h2,h3,strong,p,span,li){color:#18343e}
+.workflow-overview :is(.overview-number,a,header>p:first-child){color:#79541b}
+.workflow-overview .overview-note{color:#4b5c5e}
+.workflow-overview[data-motion=scroll] .overview-steps>li.is-active{background:#fff4d3;border-color:#987130}
+.workflow-overview .overview-steps>li{border-color:#c8b58a}
+/* 料金のカード・会社の章 */
+#sales-pricing article{background:#fffaf0;color:#18343e;border-color:#987130}
+#sales-pricing article :is(h3,p,li,strong,b,span){color:#18343e}
+#sales-company{background:#f4ebd7;color:#18343e}
+#sales-company :is(h2,h3,p,dd,dt,li,strong,span){color:#18343e}
+#sales-company :is(.chapter,a:not(.sales-button)){color:#79541b}
+/* 最後の問い合わせ（#sales-contact）は、濃い色の1か所として残す（設計9：濃いのは FV の窓と問い合わせだけ） */
+
+/* ── 4. 動き（設計6〜8） ── */
+@keyframes r40-bob{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@keyframes r40-glint{0%,100%{filter:drop-shadow(0 6px 0 #0b1c2d55) brightness(1)}50%{filter:drop-shadow(0 6px 0 #0b1c2d55) drop-shadow(0 0 18px #ffe08099) brightness(1.08)}}
+@keyframes r40-shine{0%,78%{background-position:-160% 0}100%{background-position:260% 0}}
+#fv .panel-original .fv-fast{animation:r40-bob 3.2s ease-in-out infinite}
+#fv .panel-original .fv-brand .logo{animation:r40-glint 1.6s ease-in-out .3s 2}
+.cta,.nav-cta,.sales-button.primary,#fv .panel-quick button{background-image:linear-gradient(105deg,transparent 40%,#ffffff66 50%,transparent 60%);background-size:60% 100%;background-repeat:no-repeat;animation:r40-shine 7s ease-in-out 1.5s infinite}
+.cta.secondary{background-image:linear-gradient(105deg,transparent 40%,#ffffff33 50%,transparent 60%)}
+#fv .tile-face *{animation:none!important}
+/* 下へ送ると、下から少し浮き上がりながら出る（透明から・長め） */
+html.r40-motion .r40-reveal{opacity:0;translate:0 28px;transition:opacity .8s cubic-bezier(.22,.7,.25,1),translate .8s cubic-bezier(.22,.7,.25,1)}
+html.r40-motion .r40-reveal.r40-in{opacity:1;translate:0 0}
+/* マウスを載せると少し持ち上がる */
+@media(hover:hover){
+  .evidence-workspace,#sales-pricing article,.stage,.benefit,.diagram{transition:translate .25s ease,box-shadow .25s ease}
+  .evidence-workspace:hover,#sales-pricing article:hover,.stage:hover,.benefit:hover,.diagram:hover{translate:0 -4px;box-shadow:0 10px 22px #18343e22}
+  .cta:hover,.nav-cta:hover,.sales-button:hover{translate:0 -2px}
+}
+/* 動きを止める人・「動きを停止」を押した人には、全部止める */
+html.r40-still *,html.r40-still *::before,html.r40-still *::after{animation:none!important;transition:none!important}
+html.r40-still .r40-reveal{opacity:1!important;translate:none!important}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important}
+  html.r40-motion .r40-reveal{opacity:1;translate:none;transition:none}
+}
+/* 320幅：機能04の工程ボタンの2列が、言葉のまとまりで横にはみ出さないように */
+@media(max-width:420px){#f04 .steps{grid-template-columns:repeat(2,minmax(0,1fr))}#f04 .steps .keep{white-space:normal}}
+/* コントラストの直し：選ばれた工程（濃紺の地）の中の文字は明るい色に戻す・機能07の資料の札を明るい地に・操作の札は不透明に */
+:is(#f02,#f03,#f04,#f05,#f07,#f08) .step.selected :is(b,small){color:#fff8e8}
+#f07 .sources span{background:#e9dec5;color:#18343e;border-color:#a58c5a}
+#fv .panel-controls{background:#142b40}

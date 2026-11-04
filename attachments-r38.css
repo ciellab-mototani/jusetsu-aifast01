@@ -1,0 +1,23 @@
+/* r38: only feature06 light chapter and evidence hierarchy. */
+#f06{background:#f4ebd7;color:#18343e}
+#f06 .section-content{background:linear-gradient(110deg,#f4ebd7 15%,#f4ebd7e8 65%,#f4ebd7b8),url(fv-assets/castle.webp) right top/auto 480px no-repeat}
+#f06 .intro h1{color:#18343e}
+#f06 .intro em,#f06 .eyebrow{color:#79541b}
+#f06 .evidence-workspace{background:#fffaf0;border-top-color:#987130;padding:24px}
+#f06 .readout{font-weight:650;margin:16px 0 8px}
+#f06 .focus-facts>div{padding:10px 0;border-color:#c4b28b}
+#f06 #f06-detail{border-left:3px solid #987130;padding-left:14px;margin:16px 0}
+#f06 .steps{border-top-color:#987130}
+#f06 .step{background:#e9dec5;color:#18343e;border-color:#a58c5a}
+#f06 .step span{color:#79541b}
+#f06 .step.selected{background:#18343e;color:#fff8e8;border-color:#18343e;box-shadow:-4px 0 #987130}
+#f06 .step.selected span{color:#ffe080}
+#f06 .human{color:#18343e;border-color:#987130}
+#f06 .human>b{color:#79541b}
+#f06 .bridge{border-color:#987130;color:#18343e}
+#f06 .small{color:#4b5c5e}
+#f06 .cta{background:#18343e;color:#fff8e8;border-color:#18343e}
+#f06 .integration-route{background:#eadfc7}
+#f06 .integration-route a{color:#18343e}
+#f06 :focus-visible{outline:3px solid #925215;outline-offset:4px}
+@media(max-width:760px){#f06 .evidence-workspace{padding:18px 16px}#f06 .section-content{background:linear-gradient(#f4ebd7ed,#f4ebd7),url(fv-assets/castle.webp) right top/auto 320px no-repeat}}

@@ -1,0 +1,6 @@
+/* r39: document-name readability only; no animation or image changes. */
+#f08 .documents{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px;background:#fff8e8;color:#18343e;padding:12px 24px;margin:24px 0 32px;border-block:2px solid #987130}
+#f08 .documents li{min-width:0;margin:0;padding:14px 0;background:transparent;color:#18343e;border:0;border-bottom:1px solid #c8b991;font-size:18px;line-height:1.65;word-break:normal;overflow-wrap:anywhere}
+#f08 .documents li:last-child{grid-column:1/-1;border-bottom:0}
+#f08 .documents small{display:inline-block;color:#4b5c5e;font-size:15px;line-height:1.6;margin-top:4px}
+@media(max-width:600px){#f08 .documents{grid-template-columns:minmax(0,1fr);gap:0;padding:8px 16px}#f08 .documents li{padding:12px 0}#f08 .documents li:last-child{grid-column:auto}}

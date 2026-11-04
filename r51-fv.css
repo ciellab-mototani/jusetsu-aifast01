@@ -1,0 +1,64 @@
+/* r51 最初の画面の見た目を、ほかのページ（白・紺・黄の太い枠と影）にそろえる（関さん 2026-10-30「ファーストビューのパネル…ここだけデザインのクオリティ低い」「パネル裏返した後のファーストビューも良くない」「タイトル部分はほんまにめっちゃいい」）。
+   文は元のLPの文のまま変えない（関さん「メッセージ性とかが悪いとかではない。単に…デザインセンス」）。ロゴ（タイトル）は触らない。
+   パネルは表の絵を切って裏返す作りなので、ここの見た目はタイル（.tile-face の写し）にもそのまま効く */
+
+/* ── 表：窓 ── */
+html #fv .panel-original .dialogue{background:#fff;color:#111827;border:3px solid #111827;border-radius:20px;box-shadow:7px 7px 0 #111827;padding:clamp(18px,2.4vw,30px) clamp(18px,2.6vw,34px)}
+html #fv .panel-original .dialogue::before,html #fv .panel-original .dialogue::after{display:none}
+html #fv .panel-original .dialogue h1{font:900 clamp(26px,3vw,40px)/1.3 var(--r42-serif,serif);color:#111827;letter-spacing:.01em}
+html #fv .panel-original .dialogue h1 strong{color:#111827;background:linear-gradient(transparent 60%,#fff000 60% 92%,transparent 92%);padding:0 .04em}
+html #fv .panel-original .dialogue .lead{font-size:clamp(15px,1.4vw,18px);font-weight:700;color:#334155;line-height:1.7}
+html #fv .panel-original .dialogue .stat{display:flex;flex-wrap:wrap;align-items:flex-end;gap:2px 10px;margin-top:6px}
+html #fv .panel-original .dialogue .stat-label{flex-basis:100%;display:inline-block;align-self:flex-start;padding:5px 12px;border-radius:999px;background:#111827;color:#fff000;font-size:13px;font-weight:800;letter-spacing:.04em;line-height:1.3}
+html #fv .panel-original .dialogue .stat-label br{display:none}
+html #fv .panel-original .dialogue .number{font:900 clamp(72px,8vw,108px)/1 system-ui,sans-serif;color:#111827;text-shadow:5px 5px 0 #fff000;letter-spacing:-.02em}
+html #fv .panel-original .dialogue .number span{font-size:.3em;text-shadow:none;letter-spacing:0;margin-left:4px}
+html #fv .panel-original .dialogue .note{font-size:12px;color:#64748b;line-height:1.6}
+html #fv .panel-original .dialogue .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+html #fv .panel-original .dialogue .cta{flex:1 1 200px;min-height:54px;border-radius:999px;font-size:17px;font-weight:900;letter-spacing:.02em;box-shadow:0 4px 0 #111827;border:2px solid #111827}
+html #fv .panel-original .dialogue .cta.secondary{order:-1;background:linear-gradient(#ffd75a,#f0a91c);color:#111827}
+html #fv .panel-original .dialogue .cta:not(.secondary){background:#fff;color:#111827}
+
+/* ── 裏：濃い紺の札。番号は黄色の丸、文は白で太く ── */
+html #fv .panel-back-art{background:radial-gradient(120% 90% at 50% 0%,#1f3550 0%,#111827 70%);color:#fff;padding:clamp(18px,3vw,36px) clamp(14px,3vw,40px)}
+html #fv .panel-back-art h2{color:#fff;font:900 clamp(22px,3vw,36px)/1.4 var(--r42-serif,serif)}
+html #fv .panel-back-art .fast-service-name{background:#fff000;color:#111827;padding:4px 12px;border-radius:8px;font-weight:900}
+html #fv .panel-back-art .back-route{counter-reset:br;display:grid;gap:10px}
+html #fv .panel-back-art .back-route li{counter-increment:br;position:relative;padding:12px 14px 12px 56px;border-radius:14px;background:#ffffff12;border:1.5px solid #ffffff40;color:#fff;list-style:none}
+html #fv .panel-back-art .back-route li::before{content:counter(br);position:absolute;left:14px;top:50%;translate:0 -50%;width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:#fff000;color:#111827;font-weight:900}
+html #fv .panel-back-art .back-route b{color:#fff;font-size:16px}
+html #fv .panel-back-art .back-route span{color:#cbd5e1}
+html #fv .panel-back-art .back-next{color:#fff000}
+
+/* ── 裏返る間に出る2つのボタン：ほかのページと同じ丸いボタン ── */
+html #fv .panel-quick{gap:10px}
+html #fv .panel-quick button{min-height:52px;padding:8px 22px;border-radius:999px;border:2px solid #111827;font-weight:900;font-size:16px;box-shadow:0 4px 0 #111827;background-image:none!important;animation:none!important}
+html #fv .panel-quick button[data-inquiry="無料トライアルを予約"]{order:-1;background:linear-gradient(#ffd75a,#f0a91c);color:#111827}
+html #fv .panel-quick button[data-inquiry="資料請求"]{background:#fff;color:#111827}
+
+/* ── スマホ：変身から機能までを詰める（関さん「上の変身のところからここまでが長くて…機能説明までが遠い」「短くしすぎてチャッチくなるのも嫌」）。
+   変身の絵の大きさは変えない。3つの札を、縦に並んだ大きなカード（384px）から、1枚の札に3行（チェックつき）へ ── */
+@media (max-width:760px){
+  html #fv .panel-original .dialogue{padding:16px}
+  html #fv .panel-original .dialogue h1{font-size:25px}
+  html #fv .panel-original .dialogue .number{font-size:76px}
+  html #fv .hero>.benefits{display:grid;gap:0;margin-top:14px;padding:6px 16px;border:2px solid #111827;border-radius:16px;background:#fff;box-shadow:5px 5px 0 #111827}
+  html #fv .hero>.benefits .benefit{display:grid;grid-template-columns:24px 1fr;column-gap:10px;align-items:start;margin:0;padding:12px 0;border:0;border-bottom:1px solid #e5e7eb;background:none;box-shadow:none;font-size:16px;font-weight:900;line-height:1.45;color:#111827;translate:none!important}
+  html #fv .hero>.benefits .benefit:last-child{border-bottom:0}
+  html #fv .hero>.benefits .benefit::before{content:"✓";grid-row:1/3;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#111827;color:#fff000;font-size:13px}
+  html #fv .hero>.benefits .benefit br{display:none}
+  html #fv .hero>.benefits .benefit small{grid-column:2;display:block;margin-top:2px;font-size:13px;font-weight:600;color:#475569}
+  html #fv .power-scene{padding-block:14px}
+  html #fv .power-scene .reaction{margin:4px 0}
+  html #fv .power-scene .scene-reset{padding:6px 16px;font-size:14px}
+}
+/* 元の fv.css の「b の前の番号」は、上の黄色の丸と重なって「0」と出たので消す */
+html #fv .panel-back-art .back-route b::before{content:none}
+html #fv .panel-back-art .back-route li{border-left-width:1.5px}
+html #fv .panel-quick button[data-inquiry="無料トライアルを予約"]{background:linear-gradient(#ffd75a,#f0a91c)!important;color:#111827!important}
+html #fv .panel-quick button[data-inquiry="資料請求"]{background:#fff!important;color:#111827!important}
+/* パネルのタイル：1枚ずつの組み立てを閉じ込め、ほかの部分に響かせない（速さ・2026-10-30） */
+/* （外した 2026-10-30）タイルに contain:layout paint を付けると、立体の裏返しが平らに潰れ、スマホで裏の面がさかさまに見えた（関さん「パネル裏返った時…反対向きになってる」）。立体の物には contain・overflow を付けない */
+/* 裏返る途中のすき間に見えていた水色の縞（#7fb6d8）を紺に（r51総評の軍議 議題：パネルの裏の色 3） */
+html #fv .tile-face{background:#142b40}
+html #fv .panel-stage{background:#142b40}

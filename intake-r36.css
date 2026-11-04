@@ -1,0 +1,16 @@
+/* r36: feature01 only; source screenshot stays unchanged at <= native crop size. */
+#f01 .stage h3 .phrase{display:inline-block}
+#f01 .capture-note{font-size:16px;line-height:1.65;color:#334c55;margin:12px 0}
+#f01 .intake-evidence{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:20px 0}
+#f01 .intake-evidence figure{margin:0;min-width:0;border-top:2px solid #98712d;padding-top:12px}
+#f01 .intake-crop{position:relative;overflow:hidden;aspect-ratio:260/64;width:100%;max-width:260px;background:#fff;border:1px solid #c8c9c3}
+#f01 .intake-crop img{position:absolute;max-width:none;width:476.923077%;top:-379.6875%;height:auto;display:block}
+#f01 .intake-crop.received img{left:-42.307692%}
+#f01 .intake-crop.analyzing img{left:-169.230769%}
+#f01 .intake-evidence figcaption{margin-top:12px;line-height:1.6}
+#f01 .intake-evidence strong{display:block;font-size:20px;color:#172d3b}
+#f01 .intake-evidence figcaption span{display:block;font-size:17px;margin-top:4px}
+#f01 .intake-cta{margin-top:20px}
+#f01 .intake-cta a{max-width:100%;white-space:normal;font-size:18px;line-height:1.6;text-align:center}
+#f01 summary{min-height:44px;padding:8px 0;cursor:pointer}
+@media(max-width:600px){#f01 .intake-evidence{grid-template-columns:minmax(0,1fr);gap:18px}#f01 .stage{padding:16px}#f01 .intake-cta a{display:block;padding:12px 14px}}
