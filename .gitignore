@@ -7,3 +7,7 @@ compare48/.DS_Store
 contact-config.php
 __pycache__/
 server/contact-config.php
+
+# Local rollback copies and generated upload packages
+/_アップロード不要/バックアップ/
+/_アップロード不要/配布物/

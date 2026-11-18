@@ -1,0 +1,104 @@
+/* =====================================================================
+   重説AIファスト  r55 見た目の仕上げ（追加 CSS）  2026-11-17
+   文・数字・画像・導線の中身は一切変えない。変えるのは「区切り・色味・字の大きさ・影・追従パーツの高さ・押しやすさ」だけ。
+   守った物：たぬき等のキャラ・金色と白縁の2ボタン・追従の導線・大きな「95%削減」・黄色マーカー・COMING SOON／近日公開。
+   iPhone（390px）を基準に作り、パソコンでも崩れないことを確認済み。
+   読み込み位置：各ページ <head> の css/r51-fv.css の次（最後）に1行足す。消せば元に戻る。
+   ===================================================================== */
+:root{
+  --rf-white:#ffffff;
+  --rf-gray:#f1f4f8;
+  --rf-blue:#e8f1f9;
+  --rf-line:#c9d8e6;
+  --rf-sub:#475569;
+  --rf-card-shadow:0 1px 2px rgba(16,38,58,.08),0 12px 28px -10px rgba(16,38,58,.18);
+}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body.r42{background:#fff;overflow-x:clip}
+
+/* 1 区切り：帯の色を白・淡い灰・淡い青で交互に。境目に細い線 */
+.r47-forms,.r47-types,.r47-company,.r42-hub,#contents,#workflow-overview,#sales-compare,#sales-faq{position:relative}
+.r47-forms,.r47-types,.r42-hub{background:var(--rf-white);box-shadow:0 0 0 100vmax var(--rf-white),0 -1px 0 100vmax var(--rf-line);clip-path:inset(-1px -100vmax 0 -100vmax)}
+#contents,#sales-faq{background:var(--rf-blue)!important}
+#workflow-overview{background:var(--rf-gray)!important}
+.r47-company{background:var(--rf-white)!important}
+#sales-compare{background:linear-gradient(#fffaf0,#fbf4e2)!important}
+#contents::before,#workflow-overview::before,.r47-company::before,#sales-compare::before,#sales-faq::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--rf-line);pointer-events:none}
+/* 見出しの上の余白 */
+.r42-sec,.r47-forms,.r47-types{padding-top:96px}
+@media (max-width:760px){.r42-sec,.r47-forms,.r47-types{padding-top:56px}}
+
+/* 2 カードに枠と影（白い面に白いカードが溶けないように） */
+.mp-card,.r42-gate,.faq-item,.overview-last,.r42-hub-map{border:1px solid var(--rf-line)!important;box-shadow:var(--rf-card-shadow)!important}
+.r47-type{border:1.5px solid #1d3a56!important;box-shadow:0 14px 30px -14px rgba(16,38,58,.4)!important}
+
+/* 3 字：灰色の小字を濃く、11px 以下を 12〜13px 以上に */
+.r47-co-note,.r43-num-note{font-size:13px!important;line-height:1.7}
+/* FV のカード内の注記は大きさを変えない（FV の高さと重なり順を変えないため）。色だけ濃くする */
+.note{color:var(--rf-sub)!important}
+.r42-btn small{font-size:12px!important;line-height:1.2}
+.r42-btn.white small,.r42-btn.line small{color:var(--rf-sub)!important}
+.r42-faq small,.faq-item small{font-size:13px!important}
+.r42-gate small{font-size:13px!important}
+.tag{font-size:13px!important}
+.r47-forms small,.r47-type small,.mp small{font-size:12.5px!important}
+.r42-badges small,.r42-laurel small{font-size:12px!important}
+.r42-foot small,footer small{font-size:12.5px!important}
+.r42-head .r42-btn small{font-size:11px!important}
+
+/* 4 COMING SOON／近日公開：残したまま、点線の枠と濃い札の「作りかけ感」を弱める（枠は実線・札は淡く） */
+.r42-gate.soon{border:1px solid var(--rf-line)!important;background:linear-gradient(#fffdf6,#fbf4e2)!important}
+.r42-gate.soon em{background:#eadfc2!important;color:#6b4a10!important;font-size:13px!important;padding:6px 14px!important}
+
+/* 5 追従パーツ：本文を隠さない（高さを約半分に・iPhone の下端に沿わせる） */
+@media (min-width:641px){
+  .r42-float{right:14px;bottom:14px;padding:6px 8px;gap:8px;border-radius:14px;border-width:1.5px;box-shadow:0 6px 18px rgba(16,38,58,.22)}
+  .r42-float img{display:none}
+  .r42-float .r42-btn{min-height:40px;font-size:13px;padding:3px 12px}
+  .r42-float-x{top:-12px;right:-12px;width:30px;height:30px}
+}
+@media (max-width:640px){
+  .r42-float{left:0;right:0;bottom:0;padding:6px 10px calc(6px + env(safe-area-inset-bottom));gap:8px;border-radius:14px 14px 0 0;border-width:1.5px 0 0;box-shadow:0 -4px 14px rgba(16,38,58,.16)}
+  .r42-float .r42-btn{min-height:44px;font-size:14px;padding:2px 10px}
+  .r42-float-x{top:-42px;right:8px;width:34px;height:34px;border-color:#fff;box-shadow:0 2px 6px rgba(16,38,58,.3)}
+  .r42-float-x::after{content:"";position:absolute;inset:-6px}
+  footer,.r42-foot{padding-bottom:84px}
+}
+
+/* 6 押しやすさ：携帯の指で押す物は高さ44px以上 */
+@media (max-width:760px){
+  .r42-menu{min-width:44px;min-height:44px}
+  .r42-nav a{min-height:44px;display:flex;align-items:center}
+  .r42-more,.r42-gate em{min-height:44px;display:inline-flex;align-items:center}
+  .faq-item summary,.faq-item button{min-height:48px}
+  .r47-form-dlg input,.r47-form-dlg select,.r47-form-dlg textarea{font-size:16px}
+}
+
+/* 7 問い合わせフォーム（ダイアログ）：画面の高さに収める・送信中の表示・送信完了の［閉じる］・認証失敗時の電話の案内 */
+.r47-form-dlg{max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);overflow-y:auto;overscroll-behavior:contain}
+.r47-form-x{width:44px;height:44px}
+.r47-form button[type=submit].is-busy{opacity:.75;cursor:progress;position:relative}
+.r47-form button[type=submit].is-busy::before{content:"";display:inline-block;width:14px;height:14px;margin-right:8px;vertical-align:-2px;border:2px solid #111827;border-right-color:transparent;border-radius:50%;animation:r55-spin .8s linear infinite}
+@keyframes r55-spin{to{transform:rotate(360deg)}}
+.r47-done-close{min-height:56px;border:0;border-radius:999px;background:#10263a;color:#fff;font:800 17px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 4px 0 #050d15}
+.r47-done-close:hover{background:#1d4466}
+.r47-done-close[hidden]{display:none}
+.r47-tel{margin:0;padding:10px 12px;border-radius:10px;background:#fff7ed;border:1.5px solid #c2410c;font-size:14px;font-weight:700;color:#7c2d12}
+.r47-tel[hidden]{display:none}
+.r47-tel a{color:#7c2d12;font-size:18px;text-decoration:underline;white-space:nowrap}
+/* 送信が済んだら、入力欄は隠して完了の文と［閉じる］だけにする */
+.r47-form.is-sent>:not(h2):not(.r47-form-x):not(.done):not(.r47-done-close){display:none!important}
+.r47-form.is-sent .done{padding:20px 16px;font-size:16px;line-height:1.7;text-align:center}
+
+/* 8 パネルの裏の36枚の複製：回り始めるまで描かない（fv-panels.js が動き出す直前に visible にする）。見た目・動きの始まりは同じ */
+.panel-grid{content-visibility:hidden}
+/* 9 画面の下の区画は、近づくまで配置と描画の計算を後回しにする（content-visibility:auto。見た目・動きは同じ）。高さは各幅で測った値を仮に置く（一度描かれたあとは実際の高さを覚える） */
+#contents,#types,#workflow-overview,#sales-company,#sales-compare,#sales-faq,#sales-contact,footer.r42-foot{content-visibility:auto}
+#contents{contain-intrinsic-size:auto 1545px}#types{contain-intrinsic-size:auto 1461px}#workflow-overview{contain-intrinsic-size:auto 3795px}
+#sales-company{contain-intrinsic-size:auto 1053px}#sales-compare{contain-intrinsic-size:auto 1712px}#sales-faq{contain-intrinsic-size:auto 1128px}
+#sales-contact{contain-intrinsic-size:auto 642px}footer.r42-foot{contain-intrinsic-size:auto 1407px}
+@media (min-width:761px){
+#contents{contain-intrinsic-size:auto 1120px}#types{contain-intrinsic-size:auto 1045px}#workflow-overview{contain-intrinsic-size:auto 4025px}
+#sales-company{contain-intrinsic-size:auto 1095px}#sales-compare{contain-intrinsic-size:auto 839px}#sales-faq{contain-intrinsic-size:auto 802px}
+#sales-contact{contain-intrinsic-size:auto 557px}footer.r42-foot{contain-intrinsic-size:auto 627px}}
